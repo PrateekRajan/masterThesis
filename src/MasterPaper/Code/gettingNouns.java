@@ -80,10 +80,10 @@ public class gettingNouns {
 			}
 			br.close();
 		} catch (Throwable ex) {
-			LOGGER.error("Something went wrong while extracting nouns and adjectives"
+			LOGGER.error("Something went wrong while extracting nouns and adjectives "
 					+ ex.toString() + new java.util.Date());
 		}
-		LOGGER.info("Nouns and adjectives extracted successfully"
+		LOGGER.info("Nouns and adjectives extracted successfully "
 				+ new java.util.Date());
 		tdl = prune(nouns, adjective);
 		return tdl;
@@ -195,10 +195,11 @@ public class gettingNouns {
 				}
 			}
 		} catch (Throwable ex) {
-			LOGGER.error("Something went wrong while pruning the sentences"
+			LOGGER.error("Something went wrong while pruning the sentences -->"
 					+ ex.toString() + new java.util.Date());
 		}
-		LOGGER.info("Sentence pruning done successfully" + new java.util.Date());
+		LOGGER.info("Sentence pruning done successfully -->"
+				+ new java.util.Date());
 
 		return tdl;
 	}

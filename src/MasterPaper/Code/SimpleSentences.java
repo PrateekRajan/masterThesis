@@ -41,7 +41,7 @@ public class SimpleSentences extends gettingNouns {
 			}
 			in.close();
 		} catch (Throwable ex) {
-			LOGGER.error("Error reading file" + ex.toString()
+			LOGGER.error("Error reading file " + ex.toString()
 					+ new java.util.Date());
 		}
 
