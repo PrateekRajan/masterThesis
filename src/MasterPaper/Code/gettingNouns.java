@@ -1,7 +1,9 @@
 package MasterPaper.Code;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -22,11 +24,15 @@ public class gettingNouns {
 	private static Logger LOGGER = Logger.getLogger(gettingNouns.class);
 
 	static String[] temp = new String[100];
-	static String[] nouns = new String[10];
-	static String[] adjective = new String[10];
+	static ArrayList<String> nouns = new ArrayList<String>();
+	static ArrayList<String> adjective = new ArrayList<String>();
 
-	public static List<TypedDependency> read() {
+	static String sentence = "";
+	static List<List<TypedDependency>> gdependency = new LinkedList<List<TypedDependency>>();
+
+	public static List<List<TypedDependency>> read() {
 		List<TypedDependency> tdl = null;
+		int index = -1;
 		try {
 			int j = 0, l = 0;
 
@@ -56,26 +62,30 @@ public class gettingNouns {
 
 				for (int i = 0; i <= temp.length - 1; i++) {
 					if (temp[i].contains("NN")) {
-						nouns[j] = temp[i + 1];
+						// nouns.add(j, temp[i + 1]);
+						nouns.add(temp[i + 1]);
+
 						j++;
 					}
 					if (temp[i].contains("JJ")) {
-						adjective[l] = temp[i + 1];
+						// adjective.add(l, temp[i + 1]);
+						adjective.add(temp[i + 1]);
 						l++;
 					}
 
 				}
 			}
 			System.out.println("The Nouns in the sentence are :");
-			for (int k = 0; k < nouns.length - 1; k++) {
-				if (nouns[k] != null) {
-					System.out.println(nouns[k]);// Displaying nouns
+			for (int k = 0; k < nouns.size(); k++) {
+				if (nouns.get(k) != null) {
+					System.out.println(nouns.get(k));// Displaying nouns
 				}
 			}
 			System.out.println("The Adjectives in the sentence are :");
-			for (l = 0; l < adjective.length - 1; l++) {
-				if (adjective[l] != null) {
-					System.out.println(adjective[l]);// Displaying adjectives.
+			for (l = 0; l < adjective.size(); l++) {
+				if (adjective.get(l) != null) {
+					System.out.println(adjective.get(l));// Displaying
+															// adjectives.
 				}
 			}
 			br.close();
@@ -85,12 +95,12 @@ public class gettingNouns {
 		}
 		LOGGER.info("Nouns and adjectives extracted successfully "
 				+ new java.util.Date());
-		tdl = prune(nouns, adjective);
-		return tdl;
+		gdependency = prune(nouns, adjective);
+		return gdependency;
 	}
 
-	private static List<TypedDependency> prune(String[] nouns,
-			String[] adjective) {
+	private static List<List<TypedDependency>> prune(ArrayList<String> nouns,
+			ArrayList<String> adjective) {
 		String temp;
 		List<TypedDependency> tdl = null;
 		String[] firstSplit = new String[50];
@@ -131,11 +141,11 @@ public class gettingNouns {
 			DataInputStream di = new DataInputStream(fi);
 			BufferedReader br = new BufferedReader(new InputStreamReader(di));
 			while ((temp = br.readLine()) != null) {
+				sentence = sentence + temp;
 				firstSplit = temp.split("\\.");// Splitting the paragraph into
 				// sentences and storing them
 				// into an array named
 				// firstSplit.
-
 			}
 			br.close();
 
@@ -152,18 +162,21 @@ public class gettingNouns {
 				// words.
 
 				for (int j = 0; j < secondSplit.length; j++) {
-					for (int k = 0; k < nouns.length; k++) {
-						if (nouns[k] != null
-								&& nouns[k].trim().equalsIgnoreCase(
-										secondSplit[j].trim())) {
+					for (int k = 0; k < nouns.size(); k++) {
+						if (nouns.get(k) != null
+								&& nouns.get(k)
+										.trim()
+										.equalsIgnoreCase(secondSplit[j].trim())) {
 							countnouns = 1;
 							break;
 						}
 					}
-					for (int l = 0; l < adjective.length; l++) {
-						if (adjective[l] != null
-								&& adjective[l].trim().equalsIgnoreCase(
-										secondSplit[j].trim())) {
+					for (int l = 0; l < adjective.size(); l++) {
+						if (adjective.get(l) != null
+								&& adjective
+										.get(l)
+										.trim()
+										.equalsIgnoreCase(secondSplit[j].trim())) {
 							countadjective = 1;
 							break;
 						}
@@ -191,6 +204,11 @@ public class gettingNouns {
 						// .typedDependenciesCCprocessed();
 						tdl = (List<TypedDependency>) gs
 								.typedDependenciesCollapsed();
+
+						// IN here add TDL to a list and traverse over the list
+						// to get the individual sentence structures and
+						// System.out.println("I am from gettingNouns\n" + tdl);
+						gdependency.add(tdl);
 					}
 				}
 			}
@@ -201,7 +219,6 @@ public class gettingNouns {
 		LOGGER.info("Sentence pruning done successfully -->"
 				+ new java.util.Date());
 
-		return tdl;
+		return gdependency;
 	}
-
 }

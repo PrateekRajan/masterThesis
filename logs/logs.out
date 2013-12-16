@@ -1,3 +1,11 @@
-Nouns and adjectives extracted successfullyFri Oct 18 11:29:26 PDT 2013
-Something went wrong while pruning the sentencesjava.lang.NullPointerExceptionFri Oct 18 11:29:26 PDT 2013
-Sentence pruning done successfullyFri Oct 18 11:29:26 PDT 2013
+Nouns and adjectives extracted successfully Sun Dec 15 12:05:41 PST 2013
+Sentence pruning done successfully -->Sun Dec 15 12:05:45 PST 2013
+getStructure method ran successfully on Sun Dec 15 12:05:45 PST 2013
+Nouns and adjectives extracted successfully Sun Dec 15 15:31:33 PST 2013
+Sentence pruning done successfully -->Sun Dec 15 15:31:37 PST 2013
+getStructure method ran successfully on Sun Dec 15 15:31:37 PST 2013
+Something went wrong while reading component database
+Nouns and adjectives extracted successfully Sun Dec 15 15:32:44 PST 2013
+Sentence pruning done successfully -->Sun Dec 15 15:32:48 PST 2013
+getStructure method ran successfully on Sun Dec 15 15:32:48 PST 2013
+Something went wrong while reading component database
