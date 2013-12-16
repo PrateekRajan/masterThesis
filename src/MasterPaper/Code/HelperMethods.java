@@ -11,7 +11,7 @@ import java.util.Vector;
 import org.apache.log4j.Logger;
 import edu.stanford.nlp.trees.TypedDependency;
 
-public class HelperMethods extends gettingNouns {
+public class HelperMethods {
 	private static Logger LOGGER = Logger.getLogger(HelperMethods.class);
 
 	static String getStructure() {
@@ -109,5 +109,19 @@ public class HelperMethods extends gettingNouns {
 			LOGGER.error("Something went wrong while reading component database");
 		}
 		return isComponent;
+	}
+
+	static String isNegative(List<TypedDependency> tdl) {
+		StringBuffer output = new StringBuffer();
+		String dependencyString = tdl.toString().replace(",", "")
+				.replace("(", " ").replace(")", " ").replace("-", " ");
+		String[] arr = dependencyString.split(" ");
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i].equals("neg")) {
+				output.append(arr[i + 1]);// Check if we need to add governor or
+											// dependent here
+			}
+		}
+		return output.toString();
 	}
 }
