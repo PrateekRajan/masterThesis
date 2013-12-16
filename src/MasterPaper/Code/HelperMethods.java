@@ -11,7 +11,7 @@ import java.util.Vector;
 import org.apache.log4j.Logger;
 import edu.stanford.nlp.trees.TypedDependency;
 
-public class HelperMethods extends gettingNouns {
+public class HelperMethods {
 	private static Logger LOGGER = Logger.getLogger(HelperMethods.class);
 
 	static String getStructure() {
