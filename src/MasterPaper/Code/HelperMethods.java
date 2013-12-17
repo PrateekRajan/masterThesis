@@ -124,4 +124,22 @@ public class HelperMethods {
 		}
 		return output.toString();
 	}
+
+	static String getComposite(List<TypedDependency> tdl) {
+		StringBuffer output = new StringBuffer();
+		String dependencyString = tdl.toString().replace(",", "")
+				.replace("(", " ").replace(")", " ").replace("-", " ");
+		String[] arr = dependencyString.split(" ");
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i].equals("nn") || arr[i].equals("conj_and")) {
+				for (int j = 0; j < arr.length; j++) {
+					if (arr[j].equals("nsubj") && arr[i + 1].equals(arr[j + 3])) {
+						output.append(arr[i + 3]).append(" ")
+								.append(arr[i + 1]);
+					}
+				}
+			}
+		}
+		return output.toString();
+	}
 }

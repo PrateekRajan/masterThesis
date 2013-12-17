@@ -10,8 +10,7 @@ public class CommaSeperatedSentences implements Hierarchy{
 	public void createHierarchy(String structure, List<TypedDependency> tdl) {
 		
 		
+		
 	}
-
-	
 
 }
