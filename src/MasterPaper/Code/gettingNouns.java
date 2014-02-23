@@ -12,6 +12,7 @@ import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
 import edu.stanford.nlp.process.CoreLabelTokenFactory;
 import edu.stanford.nlp.process.PTBTokenizer;
+import edu.stanford.nlp.process.TokenizerFactory;
 import edu.stanford.nlp.trees.GrammaticalStructure;
 import edu.stanford.nlp.trees.GrammaticalStructureFactory;
 import edu.stanford.nlp.trees.PennTreebankLanguagePack;
@@ -188,26 +189,24 @@ public class gettingNouns {
 					if (secondSplit.length > 0) {
 						String sent2 = Arrays.deepToString(secondSplit)
 								.replaceAll(",", "");
-						edu.stanford.nlp.process.TokenizerFactory<CoreLabel> tokenizerFactory = PTBTokenizer
+						TokenizerFactory<CoreLabel> tokenizerFactory = PTBTokenizer
 								.factory(new CoreLabelTokenFactory(), "");
 						List<CoreLabel> rawWords2 = tokenizerFactory
 								.getTokenizer(new StringReader(sent2))
 								.tokenize();
-						Tree parse = lp.apply(rawWords2);
-
+						// System.out.println("Raw words " + rawWords2);
+						Tree parse = lp.apply(rawWords2.subList(1,
+								rawWords2.size() - 1));
 						TreebankLanguagePack tlp = new PennTreebankLanguagePack();
 						GrammaticalStructureFactory gsf = tlp
 								.grammaticalStructureFactory();
 						GrammaticalStructure gs = gsf
 								.newGrammaticalStructure(parse);
-						// List<TypedDependency> tdl = gs
-						// .typedDependenciesCCprocessed();
 						tdl = (List<TypedDependency>) gs
-								.typedDependenciesCollapsed();
-
+								.typedDependenciesCCprocessed();
+						 System.out.println("I am from getting nouns " + tdl);
 						// IN here add TDL to a list and traverse over the list
 						// to get the individual sentence structures and
-						// System.out.println("I am from gettingNouns\n" + tdl);
 						gdependency.add(tdl);
 					}
 				}
