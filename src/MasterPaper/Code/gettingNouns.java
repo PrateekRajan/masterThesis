@@ -204,7 +204,7 @@ public class gettingNouns {
 								.newGrammaticalStructure(parse);
 						tdl = (List<TypedDependency>) gs
 								.typedDependenciesCCprocessed();
-						 System.out.println("I am from getting nouns " + tdl);
+						System.out.println("I am from getting nouns " + tdl);
 						// IN here add TDL to a list and traverse over the list
 						// to get the individual sentence structures and
 						gdependency.add(tdl);

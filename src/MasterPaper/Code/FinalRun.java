@@ -41,9 +41,9 @@ public class FinalRun {
 			}
 		}
 
-		System.out.println("Features " + SharedLists.features.toString());
-		System.out.println("Opinions " + SharedLists.opinions.toString());
-		System.out.println("Parents " + SharedLists.parents.toString());
+		// System.out.println("Features " + SharedLists.features.toString());
+		// System.out.println("Opinions " + SharedLists.opinions.toString());
+		// System.out.println("Parents " + SharedLists.parents.toString());
 
 		System.out.println("Below is the Hierarchy for input review");
 		for (int i = 0; i < SharedLists.parents.size(); i++) {

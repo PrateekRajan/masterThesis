@@ -1,1 +1,1 @@
-(ROOT (S (NP (NP (DT The) (NN picture) (NN quality)) (PP (IN of) (NP (DT the) (NN camera)))) (VP (VBZ is) (ADJP (JJ perfect))) (. .)))
+(ROOT (S (NP (NP (DT The) (NN size) (CC and) (NN picture) (NN quality)) (PP (IN of) (NP (DT the) (NN camera)))) (VP (VBZ is) (ADJP (JJ perfect))) (. .)))
